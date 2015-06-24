@@ -1,4 +1,4 @@
-package cn.schope.lightning.view;
+package com.jeremyfeinstein.slidingmenu.lib.app;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -25,8 +25,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-
-import com.jmpergar.awesometext.ViewUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -65,8 +63,8 @@ public class CloudEditText extends EditText {
     private void init() {
         setMovementMethod(new LinkTouchMovementMethod());
         rightDrawable = getResources().getDrawable(R.drawable.exit_pressed);
-        drawablePadding = UIUtils.dip2px(10);
-        itemPadding = UIUtils.dip2px(3);
+        drawablePadding = UIUtils.dip2px(getContext(),10);
+        itemPadding = UIUtils.dip2px(getContext(),3);
         rightDrawableWidth = rightDrawable.getIntrinsicWidth()+20 + drawablePadding;
     }
 
@@ -163,7 +161,7 @@ public class CloudEditText extends EditText {
      */
     private void generateOneSpan(Spannable spannableString, UnSpanText unSpanText) {
         View spanView = getSpanView(getContext(), unSpanText.showText.toString(), getMeasuredWidth());
-        BitmapDrawable bitmpaDrawable = (BitmapDrawable) ViewUtils.convertViewToDrawable(spanView);
+        BitmapDrawable bitmpaDrawable = (BitmapDrawable) UIUtils.convertViewToDrawable(spanView);
         bitmpaDrawable.setBounds(0, 0, bitmpaDrawable.getIntrinsicWidth(), bitmpaDrawable.getIntrinsicHeight());
         MyImageSpan what = new MyImageSpan(bitmpaDrawable, unSpanText.showText.toString(),unSpanText.returnText);
 //            this.spans.add(what);
@@ -229,9 +227,9 @@ public class CloudEditText extends EditText {
     private BitmapDrawable drawImageSpan(int measuredWidth, String spanText) {
         textPaint.setColor(getCurrentTextColor());
         textPaint.setAntiAlias(true);
-        textPaint.setTextSize(UIUtils.dip2px((int) getTextSize()));
+        textPaint.setTextSize(UIUtils.dip2px(getContext(),(int) getTextSize()));
         textPaint.getTextBounds(spanText, 0, spanText.length(), textRect);
-        int textPadding = UIUtils.dip2px(6);
+        int textPadding = UIUtils.dip2px(getContext(),6);
 
         Bitmap b = Bitmap.createBitmap(textRect.right - textRect.left + (textPadding * 2), textRect.bottom - textRect.top + (textPadding * 2), Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);
