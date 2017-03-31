@@ -1,12 +1,13 @@
-#CloudEditText 
-####(EditText内容分不同块显示,支持校验,删除块,添加块,得到块代表的字符串集合)
+# CloudEditText 
+#### (EditText内容分不同块显示,支持校验,删除块,添加块,得到块代表的字符串集合)
 
-###预览效果:
+### 预览效果:
 ![](https://github.com/g707175425/CloudEditText/blob/master/CloudEditText.gif)
 
-###代码中实现:
+### 代码中实现:
 
-####1.继承CloudEditText覆写checkInputSpan实现校验(不需校验可以省略本步)
+#### 1.继承CloudEditText覆写checkInputSpan实现校验(不需校验可以省略本步)
+```java	
 	public class ContactCloudEditTextImpl extends CloudEditText {
 
 	    public ContactCloudEditTextImpl(Context context) {
@@ -43,8 +44,10 @@
 	        }
 	    }
 	}
+```
 
-####2.在Xml中引入
+#### 2.在Xml中引入
+```xml
 	<cn.schope.lightning.view.ContactCloudEditTextImpl
                 android:inputType="textEmailAddress|textMultiLine"
                 android:id="@+id/et_user_contact"
@@ -55,10 +58,12 @@
                 android:hint="手机号/邮箱"
                 android:padding="10dp"
                 android:textColorHint="@color/lowGrayText" />
-####3.在Activity或Fragment中添加一个块或获得所有块的字符串集合(默认输入法中回车将字符串转化为块)
-	et_user_contact.addSpan(contacts.get(0).name,contacts.get(0).contact);//添加块
-	
+```
+#### 3.在Activity或Fragment中添加一个块或获得所有块的字符串集合(默认输入法中回车将字符串转化为块)
+```java	
+	et_user_contact.addSpan(contacts.get(0).name,contacts.get(0).contact);//添加块	
 	et_user_contact.getAllReturnStringList();//获得所有块的字符串集合
+```
 
 
 
